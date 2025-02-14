@@ -1,0 +1,65 @@
+# Inicializar el repositorio local
+$ git init
+Initialized empty Git repository in E:/Documentos/CURSO_ALURA/challenge-amigo-secreto_esp-main/.git/
+
+# Verificar las carpetas en el staging area
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        app.js
+        assets/
+        index.html
+        style.css
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+# Agregar archivos al staging area
+$ git add .
+
+# Verificar el staging area
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   app.js
+        new file:   assets/amigo-secreto.png
+        new file:   assets/play_circle_outline.png
+        new file:   index.html
+        new file:   style.css
+
+
+# Realizar el primer commit
+$ git commit -m "Crear estructura inicial del proyecto"
+[master (root-commit) 5958466] Crear estructura inicial del proyecto
+ 5 files changed, 204 insertions(+)
+ create mode 100644 app.js
+ create mode 100644 assets/amigo-secreto.png
+ create mode 100644 assets/play_circle_outline.png
+ create mode 100644 index.html
+ create mode 100644 style.css
+
+# Configurar el repositorio remoto
+$ git remote add origin https://github.com/dahidalgoa/challenge-amigo-secreto.git
+
+# Cambiar el nombre de master a main
+$ git branch -M main
+
+# Subir los cambios al repositorio remoto
+$ git push -u origin main
+info: please complete authentication in your browser...
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 33.89 KiB | 11.30 MiB/s, done.
+Total 8 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/dahidalgoa/challenge-amigo-secreto.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
