@@ -4,8 +4,8 @@ let amigos = [];
 function agregarAmigo() {
     
     //Capturar el valor del campo de entrada
-    let participante = document.getElementById('amigo');
-    let nombreAmigo = participante.value;
+    const participante = document.getElementById('amigo');
+    const nombreAmigo = participante.value;
 
     //Validar la información recolectada
     if((nombreAmigo === '') || (/^[0-9]+$/.test(nombreAmigo))) {
@@ -16,9 +16,24 @@ function agregarAmigo() {
         //Actualizar array de amigos
         amigos.push(nombreAmigo);
     }
-    console.log(amigos);
-
+    console.log(amigos);    
+    actualizarListaAmigos()
     //Limpiar el campo de entrada
     participante.value = '';
     return;
     }
+
+function actualizarListaAmigos() {
+    //Crear enlace con la lista donde se van a visualizar los nombres
+    const campoTexto = document.querySelector('#listaAmigos');
+    
+    //Limpiar los valores existentes en la lista
+    campoTexto.innerHTML = '';
+    
+    //Recorrer el arreglo y crear cada elemento de la lista
+    amigos.forEach(amigo => {
+        const elementoLista = document.createElement('li');
+        elementoLista.textContent = amigo;
+        campoTexto.appendChild(elementoLista);
+    });
+}
