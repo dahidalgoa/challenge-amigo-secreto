@@ -1,39 +1,56 @@
-//Array de los participantes del juego
+// Arreglo de los participantes del juego
 let amigos = [];
 
-function agregarAmigo() {
-    
-    //Capturar el valor del campo de entrada
-    const participante = document.getElementById('amigo');
-    const nombreAmigo = participante.value;
+// Enlace a los elementos del DOM
+const participante = document.getElementById('amigo');
+const listaAmigos = document.getElementById('listaAmigos');
+const resultadoSorteo = document.getElementById('resultado');
 
-    //Validar la información recolectada
-    if((nombreAmigo === '') || (/^[0-9]+$/.test(nombreAmigo))) {
-            alert('Por favor, ingrese un nombre válido')
-    } else if(amigos.includes(nombreAmigo)) {
-        alert(`El nombre ${nombreAmigo} ya existe en la lista, por favor ingresar otro nombre o el apellido`);
+function agregarAmigo() {
+    // Capturar y limpiar el valor del input
+    let nombreAmigo = participante.value.trim();
+    
+    // Validar la información recolectada
+    if (nombreAmigo === '' || /^[0-9]+$/.test(nombreAmigo)) {
+        alert('Por favor, ingrese un nombre válido');
+    } else if (amigos.some(amigo => amigo.toLowerCase() === nombreAmigo.toLowerCase())) {
+        alert(`El nombre "${nombreAmigo}" ya existe en la lista. Intente otro nombre o agregue un apellido.`);
     } else {
-        //Actualizar array de amigos
+        // Actualizar arreglo de amigos
         amigos.push(nombreAmigo);
+        actualizarListaAmigos();
     }
-    console.log(amigos);    
-    actualizarListaAmigos()
-    //Limpiar el campo de entrada
+
+    // Limpiar y enfocar el campo de entrada
     participante.value = '';
-    return;
-    }
+    participante.focus();
+}
 
 function actualizarListaAmigos() {
-    //Crear enlace con la lista donde se van a visualizar los nombres
-    const campoTexto = document.querySelector('#listaAmigos');
-    
-    //Limpiar los valores existentes en la lista
-    campoTexto.innerHTML = '';
-    
-    //Recorrer el arreglo y crear cada elemento de la lista
+    // Limpiar los valores existentes en la lista
+    listaAmigos.innerHTML = '';
+
+    // Recorrer el arreglo y crear cada elemento de la lista
     amigos.forEach(amigo => {
         const elementoLista = document.createElement('li');
         elementoLista.textContent = amigo;
-        campoTexto.appendChild(elementoLista);
+        listaAmigos.appendChild(elementoLista);
     });
+}
+
+function sortearAmigo() {
+    if (amigos.length > 1) {
+        // Seleccionar un amigo al azar
+        const indice = Math.floor(Math.random() * amigos.length);
+        const amigoSeleccionado = amigos[indice];
+
+        // Mostrar resultado
+        resultadoSorteo.textContent = `🎉 El amigo secreto sorteado es: ${amigoSeleccionado} 🎉`;
+
+        // Limpiar lista y resetear participantes
+        amigos = [];
+        actualizarListaAmigos();
+    } else {
+        alert("Debe inscribir al menos a dos participantes para realizar el sorteo.");
+    }
 }
