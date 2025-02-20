@@ -56,7 +56,7 @@ Una aplicación web interactiva para realizar sorteos de Amigo Secreto. Este pro
 
 1. Clona el repositorio:
 ```bash
-git clone [url-del-repositorio]
+git clone https://github.com/dahidalgoa/challenge-amigo-secreto.git
 ```
 
 2. Abre `index.html` en tu navegador web
